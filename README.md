@@ -59,6 +59,8 @@ Queried `splunk_soc` for JSmith authentication activity and reviewed the associa
 
 <img src="Screenshots1.0/bruteforce-eventcode.png">
 
+**Splunk table showing the successful JSmith logon, Logon Type 3, source IP 192.168.56.101, and target WS01.**
+
 <img src="Screenshots1.0/4624.png">
 
 ## Challenges & Troubleshooting
