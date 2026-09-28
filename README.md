@@ -59,7 +59,7 @@ Queried `splunk_soc` for JSmith authentication activity and reviewed the associa
 
 <img src="Screenshots1.0/bruteforce-eventcode.png">
 
-<img src="sScreenshots1.0/4624.png">
+<img src="Screenshots1.0/4624.png">
 
 ## Challenges & Troubleshooting
 - **Network addressing:** DC1 DHCP addressing caused inconsistent endpoint connectivity; static addressing was applied to stabilize the lab network.
