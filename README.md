@@ -14,14 +14,14 @@ This project uses an isolated VirtualBox SOC lab comprising Active Directory, a 
 **Active Directory administration** — configured domain services, user accounts, OUs, domain membership and RDP access.
 
 ## Tools
-**Splunk Enterprise** — searches, correlates and investigates Windows security telemetry to validate suspicious activity.
-**Splunk Universal Forwarder** — configured and maintained endpoint telemetry forwarding from WS01 to Splunk.
-**Sysmon** — configured endpoint telemetry collection for deeper process and system activity.
-**Windows Server / Windows 10** — managed Active Directory users, authentication, domain membership and RDP access across DC1 and WS01.
-**Ubuntu Server** — deployed and maintained the Splunk server and ingestion infrastructure.
-**Kali Linux** — executed authorized attack simulations and authentication testing.
-**Crowbar / NetExec** — tested the RDP authentication path and validated brute-force detection telemetry.
-**VirtualBox** — built and maintained the isolated SOC lab infrastructure.
+**Splunk Enterprise**: searches, correlates and investigates Windows security telemetry to validate suspicious activity.
+**Splunk Universal Forwarder**: configured and maintained endpoint telemetry forwarding from WS01 to Splunk.
+**Sysmon**: configured endpoint telemetry collection for deeper process and system activity.
+**Windows Server & Windows 10**: managed Active Directory users, authentication, domain membership and RDP access across DC1 and WS01.
+**Ubuntu Server**: deployed and maintained the Splunk server and ingestion infrastructure.
+**Kali Linux**: executed authorized attack simulations and authentication testing.
+**Crowbar & NetExec**: tested the RDP authentication path and validated brute-force detection telemetry.
+**VirtualBox**: built and maintained the isolated SOC lab infrastructure.
 
 ## Steps
 
@@ -106,8 +106,8 @@ This project extends the existing on-premises Splunk SOC 1.0 environment by inte
 **Google Gemini** — AI model used to structure and analyze security alerts.
 **AbuseIPDB** — Threat-intelligence service used to enrich suspicious source IP addresses.
 **Slack** — Notification platform used to deliver analyzed security alerts.
-**Docker / Docker Compose** — Used to deploy n8n on the existing SPLUNK-SRV.
-**Windows Server / Windows 10 / Sysmon** — Supplied endpoint security telemetry to Splunk.
+**Docker & Docker Compose** — Used to deploy n8n on the existing SPLUNK-SRV.
+**Windows Server, Windows 10 & Sysmon** — Supplied endpoint security telemetry to Splunk.
 
 ## Steps
 
