@@ -85,7 +85,7 @@ Engineered a SIEM pipeline that collected Windows Security and Sysmon telemetry 
 ---
 
 
-# SPLUNK SOC 2.0
+# SPLUNK SOC 2.0 (SOC AUTOMATION WITH AI)
 
 
 ## Objective
