@@ -92,7 +92,9 @@ Engineered a SIEM pipeline that collected Windows Security and Sysmon telemetry 
 Extend the existing Splunk SOC 1.0 environment into an automated SOC pipeline that detects unauthorized account activity, enriches security alerts with threat intelligence, uses AI-driven Tier 1 triage and delivers actionable findings to Slack.
 
 ## Architecture & Environment
-This project extends the existing on-premises Splunk SOC 1.0 environment by integrating n8n, Google Gemini, AbuseIPDB and Slack to automate security-alert analysis, threat-intelligence enrichment, and analyst notification.
+This project extends the existing Splunk SOC 1.0 environment by integrating n8n, Google Gemini, AbuseIPDB and Slack to automate security-alert analysis, threat-intelligence enrichment and analyst notification.
+
+<img src="Screenshots 2.0/Architecture.png">
 
 ## Skills
 **SIEM monitoring & detection** — created Splunk authentication detections and routed triggered alerts into the automation pipeline.  
