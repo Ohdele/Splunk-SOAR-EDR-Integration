@@ -96,7 +96,7 @@ This project extends the existing on-premises Splunk SOC 1.0 environment by inte
 
 ## Skills
 **SIEM monitoring & detection** — created Splunk authentication detections and routed triggered alerts into the automation pipeline.  
-**SOC Tier 1 triage & threat intelligence — enriched suspicious source IPs with AbuseIPDB and incorporated the results into alert analysis.  
+**SOC Tier 1 triage & threat intelligence** — enriched suspicious source IPs with AbuseIPDB and incorporated the results into alert analysis.  
 **Security automation & AI-assisted analysis** — built an n8n workflow that passed Splunk alert data through Gemini for structured Tier 1 analysis.  
 **Security integration & incident notification** — integrated Splunk, n8n, Gemini, AbuseIPDB and Slack into an automated alert-to-notification workflow.
 
