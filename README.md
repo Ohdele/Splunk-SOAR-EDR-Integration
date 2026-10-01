@@ -14,14 +14,15 @@ This project uses an isolated VirtualBox SOC lab comprising Active Directory, a 
 **Active Directory administration** — configured domain services, user accounts, OUs, domain membership and RDP access.
 
 ## Tools
-**Splunk Enterprise**: searches, correlates and investigates Windows security telemetry to validate suspicious activity.
-**Splunk Universal Forwarder**: configured and maintained endpoint telemetry forwarding from WS01 to Splunk.
-**Sysmon**: configured endpoint telemetry collection for deeper process and system activity.
-**Windows Server & Windows 10**: managed Active Directory users, authentication, domain membership and RDP access across DC1 and WS01.
-**Ubuntu Server**: deployed and maintained the Splunk server and ingestion infrastructure.
-**Kali Linux**: executed authorized attack simulations and authentication testing.
-**Crowbar & NetExec**: tested the RDP authentication path and validated brute-force detection telemetry.
-**VirtualBox**: built and maintained the isolated SOC lab infrastructure.
+
+**Splunk Enterprise** — centralized Windows security telemetry, detection, correlation and investigation.
+**Splunk Universal Forwarder** — forwarded WS01 endpoint telemetry to the centralized Splunk instance.
+**Sysmon** — provided detailed endpoint process and system activity telemetry.
+**Windows Server & Windows 10** — supported Active Directory, authentication, domain membership and RDP testing across DC1 and WS01.
+**Ubuntu Server** — hosted Splunk Enterprise and provided the SIEM ingestion infrastructure.
+**Kali Linux** — generated controlled authentication activity for detection validation.
+**Crowbar & NetExec** — simulated RDP authentication attacks and validated resulting detection telemetry.
+**VirtualBox** — provided the isolated SOC lab infrastructure for controlled security testing.
 
 ## Steps
 
@@ -101,13 +102,14 @@ This project extends the existing on-premises Splunk SOC 1.0 environment by inte
 **Security integration & incident notification** — integrated Splunk, n8n, Gemini, AbuseIPDB and Slack into an automated alert-to-notification workflow.
 
 ## Tools
+
 **Splunk Enterprise** — SIEM for detecting Windows authentication activity and generating security alerts.
-**n8n** — Workflow automation platform connecting Splunk with analysis, enrichment and notification services.
+**n8n** — workflow automation platform connecting Splunk with analysis, enrichment, and notification services.
 **Google Gemini** — AI model used to structure and analyze security alerts.
-**AbuseIPDB** — Threat-intelligence service used to enrich suspicious source IP addresses.
-**Slack** — Notification platform used to deliver analyzed security alerts.
-**Docker & Docker Compose** — Used to deploy n8n on the existing SPLUNK-SRV.
-**Windows Server, Windows 10 & Sysmon** — Supplied endpoint security telemetry to Splunk.
+**AbuseIPDB** — threat-intelligence service used to enrich suspicious source IP addresses.
+**Slack** — notification platform used to deliver analyzed security alerts.
+**Docker & Docker Compose** — used to deploy n8n on the existing SPLUNK-SRV.
+**Windows Server, Windows 10 & Sysmon** — supplied endpoint security telemetry to Splunk.
 
 ## Steps
 
