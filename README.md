@@ -103,13 +103,14 @@ This project extends the existing Splunk SOC 1.0 environment by integrating n8n,
 **Security integration & incident notification** — integrated Splunk, n8n, Gemini, AbuseIPDB and Slack into an automated alert-to-notification workflow.
 
 ## Tools
+
 **Draw.io** — designed the SOC architecture and security workflow.
-**Splunk Enterprise** — SIEM for detecting Windows authentication activity and generating security alerts.  
-**n8n** — workflow automation platform connecting Splunk with analysis, enrichment, and notification services.  
-**Google Gemini** — AI model used to structure and analyze security alerts.  
-**AbuseIPDB** — threat-intelligence service used to enrich suspicious source IP addresses.  
-**Slack** — notification platform used to deliver analyzed security alerts.  
-**Docker & Docker Compose** — used to deploy n8n on the existing SPLUNK-SRV.  
+**Splunk Enterprise** — SIEM for detecting Windows authentication activity and generating security alerts.
+**n8n** — workflow automation platform connecting Splunk with analysis, enrichment, and notification services.
+**Google Gemini** — AI model used to structure and analyze security alerts.
+**AbuseIPDB** — threat-intelligence service used to enrich suspicious source IP addresses.
+**Slack** — notification platform used to deliver analyzed security alerts.
+**Docker & Docker Compose** — used to deploy n8n on the existing SPLUNK-SRV.
 **Windows Server, Windows 10 & Sysmon** — supplied endpoint security telemetry to Splunk.
 
 ## Steps
