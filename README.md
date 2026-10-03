@@ -7,11 +7,12 @@ Build a centralized SOC monitoring workflow that ingests Windows security teleme
 This project uses an isolated VirtualBox SOC lab comprising Active Directory, a Windows endpoint, Splunk Enterprise, and Kali Linux. All security testing was authorized and performed exclusively within the lab environment.
 
 ## Skills
-**SIEM deployment & telemetry analysis** — deployed Splunk and analyzed centralized Windows Security and Sysmon events.  
-**Network configuration & connectivity** — designed and validated the isolated VirtualBox Host-only SOC network.  
-**Windows security & authentication analysis** — investigated EventCode `4624` and `4625` authentication activity.  
-**Attack simulation & detection investigation** — executed controlled RDP authentication testing from Kali Linux and validated - resulting telemetry in Splunk.  
-**Active Directory administration** — configured domain services, user accounts, OUs, domain membership and RDP access.
+**SIEM engineering & telemetry pipeline** — built the Splunk telemetry pipeline from WS01 through the Universal Forwarder and Sysmon into the `splunk_soc` index, enabling centralized visibility into Windows security activity.
+**Network engineering** — designed and validated the isolated VirtualBox Host-only network so the lab could support controlled attack execution, endpoint communication, and Splunk telemetry collection.
+**Detection investigation & triage** — engineered searches around EventCode `4625` and `4624` to distinguish repeated RDP authentication failures from the subsequent successful JSmith authentication.
+**Threat hunting & attack investigation** — generated controlled RDP authentication activity from Kali and traced the resulting events in Splunk to identify the attack pattern, source IP, targeted account, and successful access.
+**Incident investigation** — correlated authentication events with source and logon details to establish what occurred, where it originated, and whether access was ultimately successful.
+**Active Directory security administration** — built the AD domain, users, OUs, DNS, domain membership, and authorized RDP access required to create and investigate the controlled authentication scenario.
 
 ## Tools
 **Splunk Enterprise** — centralized Windows security telemetry, detection, correlation and investigation.  
@@ -97,13 +98,13 @@ This project extends the existing Splunk SOC 1.0 environment by integrating n8n,
 <img src="Screenshots 2.0/Architecture.png">
 
 ## Skills
-**SIEM monitoring & detection** — created Splunk authentication detections and routed triggered alerts into the automation pipeline.  
-**SOC Tier 1 triage & threat intelligence** — enriched suspicious source IPs with AbuseIPDB and incorporated the results into alert analysis.  
-**Security automation & AI-assisted analysis** — built an n8n workflow that passed Splunk alert data through Gemini for structured Tier 1 analysis.  
-**Security integration & incident notification** — integrated Splunk, n8n, Gemini, AbuseIPDB and Slack into an automated alert-to-notification workflow.
+**SIEM monitoring & detection engineering** — built a Splunk scheduled detection for failed RDP authentication and routed the resulting EventCode `4625` alerts into n8n through a webhook.
+**SOC Tier 1 triage & threat intelligence** — passed structured Splunk alert data to Gemini for alert summarization, IOC enrichment, severity assessment, and recommended actions using AbuseIPDB.
+**Security automation & AI-assisted analysis** — engineered an n8n workflow that transformed raw Splunk alerts into structured SOC findings for analyst review.
+**Security integration & incident notification** — integrated Splunk, n8n, Gemini, AbuseIPDB, and Slack into an automated alert-analysis and notification pipeline.
+**Network integration & connectivity** — deployed n8n on the existing Splunk server and validated webhook, API, and external IP-enrichment connectivity across the SOC workflow.
 
 ## Tools
-
 **Draw.io** — designed the SOC architecture and security workflow.<br>
 **Splunk Enterprise** — SIEM for detecting Windows authentication activity and generating security alerts.<br>
 **n8n** — workflow automation platform connecting Splunk with analysis, enrichment, and notification services.<br>
