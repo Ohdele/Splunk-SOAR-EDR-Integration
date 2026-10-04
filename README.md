@@ -7,13 +7,13 @@ Build a centralized SOC monitoring workflow that ingests Windows security teleme
 This project uses an isolated VirtualBox SOC lab comprising Active Directory, a Windows endpoint, Splunk Enterprise, and Kali Linux. All security testing was authorized and performed exclusively within the lab environment.
 
 ## Skills
-
 - **SIEM engineering & telemetry pipeline** — built the Splunk telemetry pipeline from WS01 through the Universal Forwarder and Sysmon into the `splunk_soc` index, enabling centralized visibility into Windows security activity.<br>
-- **Network engineering** — designed and validated the isolated VirtualBox Host-only network to support controlled attack execution, endpoint communication, and Splunk telemetry collection.<br>
-- **Detection investigation & triage** — engineered searches around EventCode `4625` and `4624` to distinguish repeated RDP authentication failures from the subsequent successful JSmith authentication.<br>
-- **Threat hunting & attack investigation** — generated controlled RDP authentication activity from Kali and traced the resulting events in Splunk to identify the attack pattern, source IP, targeted account, and successful access.<br>
-- **Incident investigation** — correlated authentication events with source and logon details to establish what occurred, where it originated, and whether access was ultimately successful.<br>
-- **Active Directory security administration** — built the AD domain, users, OUs, DNS, domain membership, and authorized RDP access required to create and investigate the controlled authentication scenario.
+- **SPL & detection engineering** — developed Splunk searches using EventCode `4625` and `4624` to identify repeated authentication failures, successful authentication, targeted accounts, source IPs, and logon details.<br>
+- **Network engineering** — designed and validated the isolated VirtualBox Host-only network to support controlled attack execution, endpoint communication, AD services, and Splunk telemetry collection.<br>
+- **Detection investigation, triage & incident analysis** — investigated repeated RDP authentication failures, correlated authentication events with source and logon details, and determined whether the subsequent JSmith authentication resulted in successful access.<br>
+- **Threat hunting & attack investigation** — generated controlled RDP authentication activity from Kali and traced the resulting telemetry in Splunk to identify the attack pattern, source IP, targeted account, and successful access.<br>
+- **Windows/Linux system administration** — configured Windows Server, Windows 10, Ubuntu Server, Kali Linux, Splunk Universal Forwarder, Sysmon, networking, services, and VirtualBox VM integration.<br>
+- **Active Directory security administration** — built the AD domain, users, OUs, DNS, domain membership, and authorized RDP access required to create and investigate the controlled authentication scenario.<br>
 
 ## Tools
 - **Splunk Enterprise** — centralized Windows security telemetry, detection, correlation and investigation.  
@@ -99,12 +99,13 @@ This project extends the existing Splunk SOC 1.0 environment by integrating n8n,
 <img src="Screenshots 2.0/Architecture.png">
 
 ## Skills
-
-- **SIEM monitoring & detection engineering** — built a Splunk scheduled detection for failed RDP authentication and routed the resulting EventCode `4625` alerts into n8n through a webhook.<br>
+- **SIEM monitoring & detection engineering** — built a Splunk scheduled detection for failed RDP authentication and routed EventCode `4625` alerts into n8n through a webhook.<br>
+- **SPL & security alert analysis** — developed Splunk searches to identify failed authentication activity and structured alert data for automated SOC analysis.<br>
 - **SOC Tier 1 triage & threat intelligence** — passed structured Splunk alert data to Gemini for alert summarization, IOC enrichment, severity assessment, and recommended actions using AbuseIPDB.<br>
 - **Security automation & AI-assisted analysis** — engineered an n8n workflow that transformed raw Splunk alerts into structured SOC findings for analyst review.<br>
 - **Security integration & incident notification** — integrated Splunk, n8n, Gemini, AbuseIPDB, and Slack into an automated alert-analysis and notification pipeline.<br>
-- **Network integration & connectivity** — deployed n8n on the existing Splunk server and validated webhook, API, and external IP-enrichment connectivity across the SOC workflow.
+- **Linux/Docker system administration** — deployed and configured n8n with Docker and Docker Compose on the existing Ubuntu-based Splunk server.<br>
+- **Network integration & connectivity** — validated webhook, API, external IP-enrichment, and SOC component connectivity across the workflow.<br>
 
 ## Tools
 - **Draw.io** — designed the SOC architecture and security workflow.<br>
