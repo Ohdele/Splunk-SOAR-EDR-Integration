@@ -16,14 +16,14 @@ This project uses an isolated VirtualBox SOC lab comprising Active Directory, a 
 - **Active Directory security administration** — built the AD domain, users, OUs, DNS, domain membership, and authorized RDP access required to create and investigate the controlled authentication scenario.<br>
 
 ## Tools
-- **Splunk Enterprise** — centralized Windows security telemetry, detection, correlation and investigation.  
-- **Splunk Universal Forwarder** — forwarded WS01 endpoint telemetry to the centralized Splunk instance.  
-- **Sysmon** — provided detailed endpoint process and system activity telemetry.  
-- **Windows Server & Windows 10** — supported Active Directory, authentication, domain membership and RDP testing across DC1 and WS01.  
-- **Ubuntu Server** — hosted Splunk Enterprise and provided the SIEM ingestion infrastructure.  
-- **Kali Linux** — generated controlled authentication activity for detection validation.  
-- **Crowbar & NetExec** — simulated RDP authentication attacks and validated resulting detection telemetry.  
-- **VirtualBox** — provided the isolated SOC lab infrastructure for controlled security testing.
+- **Splunk Enterprise** — received WS01 telemetry on port `9997`, stored it in the `splunk_soc` index, and was used to investigate RDP authentication events.
+- **Splunk Universal Forwarder** — collected WS01 Application, Security, System, and Sysmon events and forwarded them to SPLUNK-SRV.
+- **Sysmon** — provided Windows endpoint telemetry that was collected by the Universal Forwarder and ingested into Splunk.
+- **Windows Server & Windows 10** — hosted the Active Directory domain, domain controller, domain workstation, user accounts, and RDP authentication target.
+- **Ubuntu Server** — hosted Splunk Enterprise and received forwarded WS01 telemetry.
+- **Kali Linux** — generated the controlled RDP authentication attempts against WS01.
+- **Crowbar & NetExec** — performed the authorized RDP password-testing activity against WS01; NetExec was used after Crowbar proved incompatible with the installed FreeRDP version.
+- **VirtualBox** — provided the isolated virtual machines and Host-only network used for the SOC lab.
 
 ## Steps
 
@@ -87,7 +87,7 @@ Engineered a SIEM pipeline that collected Windows Security and Sysmon telemetry 
 ---
 
 
-# SPLUNK SOC 2.0 (SOC AUTOMATION WITH AI)
+# SPLUNK SOC 2.0 - SOC AUTOMATION WITH AI
 
 
 ## Objective
@@ -105,17 +105,17 @@ This project extends the existing Splunk SOC 1.0 environment by integrating n8n,
 - **Security automation & AI-assisted analysis** — engineered an n8n workflow that transformed raw Splunk alerts into structured SOC findings for analyst review.<br>
 - **Security integration & incident notification** — integrated Splunk, n8n, Gemini, AbuseIPDB, and Slack into an automated alert-analysis and notification pipeline.<br>
 - **Linux/Docker system administration** — deployed and configured n8n with Docker and Docker Compose on the existing Ubuntu-based Splunk server.<br>
-- **Network integration & connectivity** — validated webhook, API, external IP-enrichment, and SOC component connectivity across the workflow.<br>
+- **SOC workflow connectivity & integration testing** — validated the Splunk webhook, Gemini API connection, AbuseIPDB enrichment, and Slack notification path across the automated SOC workflow.<br>
 
 ## Tools
-- **Draw.io** — designed the SOC architecture and security workflow.<br>
-- **Splunk Enterprise** — SIEM for detecting Windows authentication activity and generating security alerts.<br>
-- **n8n** — workflow automation platform connecting Splunk with analysis, enrichment, and notification services.<br>
-- **Google Gemini** — AI model used to structure and analyze security alerts.<br>
-- **AbuseIPDB** — threat-intelligence service used to enrich suspicious source IP addresses.<br>
-- **Slack** — notification platform used to deliver analyzed security alerts.<br>
-- **Docker & Docker Compose** — used to deploy n8n on the existing SPLUNK-SRV.<br>
-- **Windows Server, Windows 10 & Sysmon** — supplied endpoint security telemetry to Splunk.
+- **Draw.io**: designed the documented SOC automation architecture and workflow.<br>
+- **Splunk Enterprise**: generated the `Test-Brute-Force` alert from failed Windows authentication events and sent the alert to n8n through a webhook.<br>
+- **n8n**: received Splunk webhook alerts, connected Gemini with AbuseIPDB enrichment, and delivered the resulting SOC analysis to Slack.<br>
+- **Google Gemini**: analyzed the Splunk alert and structured the output into Summary, IOC Enrichment, Severity Assessment, and Recommended Actions.<br>
+- **AbuseIPDB**: enriched the alert's source IP with threat-intelligence information through the `abuse-ipdb-enrichment` tool.<br>
+- **Slack**: received the completed Gemini-generated SOC analysis in the alerts channel.<br>
+- **Docker & Docker Compose**: deployed n8n on the existing SPLUNK-SRV at `192.168.56.130`.<br>
+- **Windows Server, Windows 10 & Sysmon**: provided the Windows authentication and endpoint telemetry used by the Splunk brute-force detection.<br>
 
 ## Steps
 
@@ -166,7 +166,7 @@ Connected the Splunk alert to an n8n Webhook so security-alert data could be pas
 The webhook received the alert's time, computer name, user, source IP and event count, confirming successful Splunk-to-n8n data transfer.
 
 ### 4. Integrate Gemini for SOC Alert Analysis
-Integrated Google Gemini into n8n to structure security alerts into analyst-focused findings, including threat-intelligence enrichment, severity assessment, and recommended actions.
+Integrated Google Gemini into n8n to analyze the Splunk alert together with the AbuseIPDB threat-intelligence enrichment and produce structured Tier 1 SOC findings, including severity assessment and recommended actions.
 
 **n8n prompt template containing expressions:**
 
@@ -265,12 +265,12 @@ This project was implemented as a controlled lab simulation using the existing W
 - **Security Communications** — delivered detection and response information through Slack and email alerts.
 
 ## Tools
-- **LimaCharlie** — EDR telemetry, detection engineering, endpoint isolation, and isolation-status verification.
-- **Tines** — SOAR orchestration, alert routing, analyst approval, and automated response.
-- **Slack** — SOC detection, investigation, and response-status notifications.
-- **Email** — secondary detection-alert channel containing investigation details.
-- **Windows Server DC1** — controlled endpoint used to generate and validate security telemetry.
-- **LaZagne** — controlled password-recovery tool activity used to generate detectable endpoint telemetry.
+- **LimaCharlie**: enrolled DC1, detected `LaZagne.exe` activity, executed endpoint isolation, verified isolation status, and restored network access.<br>
+- **Tines**: received LimaCharlie detections through a webhook, sent Slack/email alerts, presented the Yes/No isolation prompt, and triggered the LimaCharlie `Isolate Sensor` action when approved.<br>
+- **Slack**: received LaZagne detection alerts, no-isolation notifications, and the final endpoint isolation-status confirmation.<br>
+- **Email**: delivered LimaCharlie detection alerts containing the endpoint and detection details.<br>
+- **Windows Server DC1**: hosted the LimaCharlie sensor and generated the controlled `LaZagne.exe` activity used to validate detection and endpoint isolation.<br>
+- **LaZagne**: generated controlled credential-access process activity that triggered the LimaCharlie detection rule.<br>
 
 ## Steps
 
@@ -380,7 +380,7 @@ Created and connected the correct LimaCharlie REST API credential with the `*.li
 
 **Investigation Findings:** LimaCharlie telemetry from controlled LaZagne execution provided the file path, command line, hash, hostname, source IP and detection link used to identify credential-access activity and drive the downstream response workflow.
 
-**Security Decision:** LimaCharlie was selected for endpoint detection and containment, while Tines provided orchestration and an explicit analyst approval gate before automated response.
+**Security Decision:** LimaCharlie provided endpoint detection and containment, while Tines provided orchestration and an explicit analyst approval gate before automated response.
 
 **Validation:** The completed workflow generated the detection, delivered Slack and email alerts, captured the isolation decision, isolated DC1 with HTTP 200, confirmed `Isolation status: true`, blocked network connectivity, and verified connectivity restoration after rejoining.
 
